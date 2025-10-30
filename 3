@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Certificados{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Gestión de Certificados 🎓</h2>
+<p class="text-center text-muted">Registra tus horas de voluntariado y descarga tus certificados de participación.</p>
+
+<!-- Formulario para registrar horas -->
+<div class="card shadow-sm mb-5">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Registrar Horas</h5>
+    <form method="POST" action="{{ url_for('certificados') }}">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label">Proyecto</label>
+          <input type="text" name="proyecto" class="form-control" placeholder="Nombre del proyecto" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Horas trabajadas</label>
+          <input type="number" name="horas" class="form-control" min="1" required>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label">Fecha</label>
+          <input type="date" name="fecha" class="form-control" required>
+        </div>
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-success mt-2">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Tabla de certificados -->
+<div class="table-responsive shadow-sm">
+  <table class="table table-striped align-middle text-center">
+    <thead class="table-primary">
+      <tr>
+        <th>Proyecto</th>
+        <th>Horas</th>
+        <th>Fecha</th>
+        <th>Certificado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in certificados %}
+      <tr>
+        <td>{{ c.proyecto }}</td>
+        <td>{{ c.horas }}</td>
+        <td>{{ c.fecha }}</td>
+        <td>
+          <a href="{{ c.enlace }}" class="btn btn-sm btn-info text-white" target="_blank">Descargar</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4" class="text-muted py-3">Aún no hay certificados registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
