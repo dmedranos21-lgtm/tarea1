@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio de Sesión{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="text-center mb-4">Iniciar Sesión</h3>
+        <form>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" id="correo" class="form-control" placeholder="nombre@ejemplo.com">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" class="form-control" placeholder="••••••••">
+          </div>
+          <div class="mb-3">
+            <label for="rol" class="form-label">Seleccionar rol</label>
+            <select id="rol" class="form-select">
+              <option value="voluntario">Voluntario</option>
+              <option value="coordinador">Coordinador ONG</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary" onclick="redirigir()">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function redirigir() {
+    const rol = document.getElementById("rol").value;
+    if (rol === "voluntario") {
+      window.location.href = "/voluntario";
+    } else if (rol === "coordinador") {
+      window.location.href = "/coordinador";
+    } else {
+      window.location.href = "/admin";
+    }
+  }
+</script>
+{% endblock %}

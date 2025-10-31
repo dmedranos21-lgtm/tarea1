@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Gestión de Proyectos{% endblock %}
+
+{% block content %}
+<!-- ENCABEZADO -->
+<h2 class="text-center mb-4">Gestión de Proyectos 🌱</h2>
+<p class="text-center text-muted">
+  Administra los proyectos de voluntariado: crea, edita, visualiza el progreso y asigna voluntarios.
+</p>
+
+<!-- FORMULARIO: CREAR PROYECTO -->
+<div class="card shadow-sm mb-5">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Registrar nuevo proyecto</h5>
+    <form method="POST" action="{{ url_for('proyectos') }}">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label" for="nombre">Nombre del proyecto</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Reforestación Urbana" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="objetivo">Objetivo</label>
+          <input type="text" id="objetivo" name="objetivo" class="form-control" placeholder="Ej. Plantar 100 árboles" required>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label" for="fecha_inicio">Fecha de inicio</label>
+          <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+        </div>
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-success mt-2">Crear Proyecto</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TABLA: LISTA DE PROYECTOS -->
+<div class="table-responsive shadow-sm">
+  <table class="table table-striped align-middle text-center">
+    <thead class="table-primary">
+      <tr>
+        <th>Nombre</th>
+        <th>Objetivo</th>
+        <th>Fecha Inicio</th>
+        <th>Voluntarios</th>
+        <th>Progreso</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in proyectos %}
+        {% set barra = "bg-success" if p.progreso >= 80 else "bg-warning" if p.progreso >= 40 else "bg-danger" %}
+      <tr>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.objetivo }}</td>
+        <td>{{ p.fecha_inicio }}</td>
+        <td>{{ p.voluntarios }}</td>
+        <td>
+          <div class="progress" style="height: 20px;">
+            <div class="progress-bar {{ barra }}" 
+                 role="progressbar" 
+                 style="width: {{ p.progreso }}%;" 
+                 aria-valuenow="{{ p.progreso }}" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">
+              {{ p.progreso }}%
+            </div>
+          </div>
+        </td>
+        <td>
+          {% if p.estado == "Activo" %}
+            <span class="badge bg-success">Activo</span>
+          {% else %}
+            <span class="badge bg-secondary">Finalizado</span>
+          {% endif %}
+        </td>
+        <td>
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-sm btn-warning text-white">Editar</button>
+            <button class="btn btn-sm btn-danger">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="7" class="text-center text-muted py-3">No hay proyectos registrados actualmente.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

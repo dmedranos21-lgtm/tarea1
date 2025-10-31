@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Panel del Voluntario{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Bienvenido, Voluntario 👋</h2>
+<p class="text-center">Aquí puedes participar en proyectos, registrar tus horas y ver tus certificados.</p>
+
+<div class="row text-center mt-4">
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-primary">
+      <div class="card-body">
+        <h5 class="card-title">Proyectos Disponibles</h5>
+        <p class="card-text">Consulta los proyectos en los que puedes participar.</p>
+        <a href="/proyectos" class="btn btn-primary">Ver Proyectos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-success">
+      <div class="card-body">
+        <h5 class="card-title">Registrar Horas</h5>
+        <p class="card-text">Registra tus horas de trabajo voluntario para obtener tu certificado.</p>
+        <a href="/certificados" class="btn btn-success">Registrar Horas</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-info">
+      <div class="card-body">
+        <h5 class="card-title">Ver Certificados</h5>
+        <p class="card-text">Descarga tus certificados de participación en proyectos.</p>
+        <a href="/certificados" class="btn btn-info">Ver Certificados</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

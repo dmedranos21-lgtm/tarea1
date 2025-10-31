@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Plataforma de Voluntariado{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Plataforma de Voluntariado</h1>
+<p class="text-center mb-5">
+    Las redes de colaboración y voluntariado son fundamentales para conectar personas, ONGs y proyectos sociales.
+</p>
+
+<!-- Roles del Sistema -->
+<h3 class="text-center mb-3">Roles del Sistema</h3>
+<div class="row text-center mb-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-primary">
+            <div class="card-body">
+                <h5 class="card-title">Voluntario</h5>
+                <p class="card-text">Registrarse, ver oportunidades, reportar horas y descargar certificados.</p>
+                <a href="/voluntario" class="btn btn-primary">Entrar como Voluntario</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-success">
+            <div class="card-body">
+                <h5 class="card-title">Coordinador ONG</h5>
+                <p class="card-text">Crear proyectos, asignar voluntarios y emitir certificados.</p>
+                <a href="/coordinador" class="btn btn-success">Entrar como Coordinador</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-danger">
+            <div class="card-body">
+                <h5 class="card-title">Administrador</h5>
+                <p class="card-text">Gestionar ONGs, revisar reportes y moderar contenido.</p>
+                <a href="/admin" class="btn btn-danger">Entrar como Administrador</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Módulos principales -->
+<h3 class="text-center mb-3">Módulos del Sistema</h3>
+<div class="row text-center">
+    <div class="col-md-3 mb-3">
+        <a href="/proyectos" class="btn btn-outline-primary w-100 p-3">Gestión de Proyectos</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a href="/voluntarios" class="btn btn-outline-success w-100 p-3">Asignación de Voluntarios</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a href="/certificados" class="btn btn-outline-warning w-100 p-3">Registro de Horas y Certificados</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a href="/reportes" class="btn btn-outline-info w-100 p-3">Reportes e Impacto Social</a>
+    </div>
+</div>
+{% endblock %}

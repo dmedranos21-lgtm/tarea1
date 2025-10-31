@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Panel del Coordinador ONG{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Panel del Coordinador ONG 🧩</h2>
+<p class="text-center">Desde aquí puedes gestionar los proyectos, los voluntarios y los certificados.</p>
+
+<div class="row text-center mt-4">
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-success">
+      <div class="card-body">
+        <h5 class="card-title">Crear Proyecto</h5>
+        <p class="card-text">Crea nuevos proyectos de voluntariado y define sus objetivos.</p>
+        <a href="/proyectos" class="btn btn-success">Ir a Proyectos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-warning">
+      <div class="card-body">
+        <h5 class="card-title">Asignar Voluntarios</h5>
+        <p class="card-text">Selecciona los voluntarios que participarán en tus proyectos.</p>
+        <a href="/voluntarios" class="btn btn-warning text-white">Asignar Voluntarios</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-primary">
+      <div class="card-body">
+        <h5 class="card-title">Emitir Certificados</h5>
+        <p class="card-text">Registra la finalización de proyectos y entrega certificados.</p>
+        <a href="/certificados" class="btn btn-primary">Emitir Certificados</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Reportes y Estadísticas{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Reportes y Estadísticas 📈</h2>
+<p class="text-center text-muted mb-5">
+  Visualiza el estado general de los proyectos de voluntariado y su progreso.
+</p>
+
+<!-- TARJETAS RESUMEN -->
+<div class="row g-4 mb-5">
+  <div class="col-md-3">
+    <div class="card shadow-sm border-0 text-center">
+      <div class="card-body">
+        <h5 class="text-muted">Proyectos Activos</h5>
+        <h2 class="text-success fw-bold">{{ proyectos_activos or 3 }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm border-0 text-center">
+      <div class="card-body">
+        <h5 class="text-muted">Proyectos Finalizados</h5>
+        <h2 class="text-secondary fw-bold">{{ proyectos_finalizados or 2 }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm border-0 text-center">
+      <div class="card-body">
+        <h5 class="text-muted">Voluntarios Totales</h5>
+        <h2 class="text-primary fw-bold">{{ total_voluntarios or 37 }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm border-0 text-center">
+      <div class="card-body">
+        <h5 class="text-muted">Progreso Promedio</h5>
+        <h2 class="text-warning fw-bold">{{ progreso_promedio or 68 }}%</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLA DE PROYECTOS -->
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white text-center fw-bold">
+    Detalle de Proyectos
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle text-center mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Objetivo</th>
+            <th>Voluntarios</th>
+            <th>Progreso</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in proyectos %}
+          <tr>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.objetivo }}</td>
+            <td>{{ p.voluntarios }}</td>
+            <td>
+              <div class="progress" style="height: 18px;">
+                <div class="progress-bar {% if p.progreso >= 80 %}bg-success{% elif p.progreso >= 40 %}bg-warning{% else %}bg-danger{% endif %}" 
+                     style="width: {{ p.progreso }}%;">
+                  {{ p.progreso }}%
+                </div>
+              </div>
+            </td>
+            <td>
+              {% if p.estado == "Activo" %}
+                <span class="badge bg-success">Activo</span>
+              {% else %}
+                <span class="badge bg-secondary">Finalizado</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="5" class="text-center text-muted py-3">No hay proyectos registrados para mostrar.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

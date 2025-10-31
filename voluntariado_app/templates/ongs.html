@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Gestión de ONGs{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Gestión de ONGs 🤝</h2>
+<p class="text-center text-muted">Administra las organizaciones que participan en el programa de voluntariado.</p>
+
+<!-- Formulario para registrar ONG -->
+<div class="card shadow-sm mb-5">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Registrar nueva ONG</h5>
+    <form method="POST" action="{{ url_for('ongs') }}">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label">Nombre</label>
+          <input type="text" name="nombre" class="form-control" placeholder="Nombre de la ONG" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Correo</label>
+          <input type="email" name="correo" class="form-control" placeholder="contacto@ejemplo.com" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Teléfono</label>
+          <input type="tel" name="telefono" class="form-control" placeholder="+57 300..." required>
+        </div>
+        <div class="col-md-1 d-grid">
+          <button type="submit" class="btn btn-success mt-2">Añadir</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Tabla de ONGs -->
+<div class="table-responsive shadow-sm">
+  <table class="table table-striped align-middle text-center">
+    <thead class="table-primary">
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in ongs %}
+      <tr>
+        <td>{{ o.nombre }}</td>
+        <td>{{ o.correo }}</td>
+        <td>{{ o.telefono }}</td>
+        <td>
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-sm btn-warning text-white">Editar</button>
+            <button class="btn btn-sm btn-danger">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4" class="text-muted py-3">No hay ONGs registradas todavía.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
